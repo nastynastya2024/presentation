@@ -128,13 +128,13 @@
 
     .slide-hero-icon img {
       display: block;
-      width: clamp(132px, 19vw, 220px);
+      width: clamp(83px, 12vw, 139px);
       max-width: 92%;
       height: auto;
     }
 
     .slide--pros .slide-hero-icon img {
-      width: clamp(150px, 24vw, 280px);
+      width: clamp(95px, 15.1vw, 176px);
     }
 
     .slide-split {
@@ -174,7 +174,7 @@
     }
 
     .slide-split__icon {
-      width: min(88%, clamp(140px, 20vw, 260px));
+      width: min(88%, clamp(88px, 12.6vw, 164px));
       flex-shrink: 0;
       opacity: 0.95;
     }
@@ -208,7 +208,7 @@
       }
 
       .slide-split__icon {
-        width: min(48vw, 180px);
+        width: min(31vw, 114px);
       }
     }
 
@@ -234,6 +234,12 @@
       letter-spacing: -0.03em;
       max-width: 24ch;
       margin-bottom: var(--gap-after-h1);
+    }
+
+    .slide--with-hero > h1 {
+      text-align: center;
+      align-self: stretch;
+      max-width: none;
     }
 
     .slide--about {
@@ -351,8 +357,8 @@
     }
 
     .slide li strong {
-      font-weight: 600;
-      color: var(--accent);
+      font-weight: 400;
+      color: inherit;
     }
 
     .slide .cols {
@@ -422,8 +428,8 @@
     }
 
     .slide--theses .theses-list strong {
-      font-weight: 600;
-      color: var(--accent);
+      font-weight: 400;
+      color: inherit;
     }
 
     /* Карточки в сетках — одинаковая типографика и «рейка» */
@@ -456,12 +462,12 @@
       color: var(--muted);
     }
 
-    .ai-minus-item strong,
-    .pros-item strong,
-    .vibe-tz-item strong,
-    .core-item strong {
-      font-weight: 600;
-      color: var(--accent);
+    .ai-minus-item p strong,
+    .pros-item p strong,
+    .vibe-tz-item p strong,
+    .core-item p strong {
+      font-weight: 400;
+      color: inherit;
     }
 
     .slide--pros h1 {
@@ -470,7 +476,7 @@
 
     @media (max-aspect-ratio: 5/4) {
       .slide--pros .slide-hero-icon img {
-        width: clamp(120px, 28vw, 220px);
+        width: clamp(76px, 17.6vw, 139px);
       }
     }
 
