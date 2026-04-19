@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Vibe Coding: продуктовый подход и Vibe-ТЗ" />
+  <title>Vibe Coding — pitch</title>
+  <style>
+    :root {
+      --bg: #f4f3f0;
+      --slide: #ffffff;
+      --text: #121212;
+      --muted: #5a5a5a;
+      --line: #e0ddd6;
+      --accent: #1a1a1a;
+      --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 3vw, 40px);
+      gap: 20px;
+    }
+
+    .stage {
+      width: min(92vw, calc((92vh - 72px) * 16 / 9));
+      aspect-ratio: 16 / 9;
+      max-height: calc(92vh - 72px);
+      position: relative;
+      background: var(--slide);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: clamp(40px, 6vh, 72px) clamp(48px, 7vw, 96px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(24px, 3.5vh, 40px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-meta {
+      font-size: clamp(11px, 1vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .slide h1 {
+      font-size: clamp(26px, 3.4vw, 44px);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 22ch;
+    }
+
+    .slide .kicker {
+      font-size: clamp(15px, 1.55vw, 19px);
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: min(42ch, 94%);
+      font-weight: 400;
+    }
+
+    .slide ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.8vh, 20px);
+      max-width: min(48ch, 96%);
+      border-left: 2px solid var(--line);
+      padding-left: clamp(20px, 2.2vw, 28px);
+    }
+
+    .slide li {
+      font-size: clamp(15px, 1.5vw, 18px);
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .slide li strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .slide .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 4vw, 56px);
+      max-width: 100%;
+      align-items: start;
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide .cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide .col h2 {
+      font-size: clamp(12px, 1.05vw, 13px);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: clamp(14px, 2vh, 20px);
+    }
+
+    .slide .col ul {
+      border-left-color: var(--line);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .toolbar button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .toolbar button:hover {
+      color: var(--text);
+    }
+
+    .toolbar button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 2px;
+    }
+
+    .counter {
+      font-size: 13px;
+      color: var(--muted);
+      min-width: 4.5em;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" role="region" aria-label="Слайды презентации">
+    <div class="slides" id="slides">
+      <section class="slide active" data-slide="0" aria-hidden="false">
+        <span class="slide-meta">Слайд 0</span>
+        <h1>Обо мне</h1>
+        <ul>
+          <li>10 лет в IT</li>
+          <li>Опыт: разработка, продукт, архитектура, инструменты на базе ИИ</li>
+          <li>Фокус: переход от классической разработки к работе с ИИ и сценарному проектированию продуктов</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="1" aria-hidden="true">
+        <span class="slide-meta">Слайд 1</span>
+        <h1>Vibe Coding как подход к разработке</h1>
+        <p class="kicker">Продукт задаётся не экранами и строками кода, а сценариями, поведением системы и продуктовой логикой. ИИ интерпретирует описание и собирает из него работающую систему.</p>
+        <ul>
+          <li>Пользовательские сценарии</li>
+          <li>Поведение системы</li>
+          <li>Смысл и логика продукта</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="2" aria-hidden="true">
+        <span class="slide-meta">Слайд 2</span>
+        <h1>Плюсы Vibe Coding</h1>
+        <ul>
+          <li>Быстрое прототипирование: идея → продукт</li>
+          <li>Низкий порог входа в разработку</li>
+          <li>Фокус на продуктовой логике</li>
+          <li>Итерации через уточнение описания</li>
+          <li>ИИ ускоряет проектирование архитектуры и сборку компонентов</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="3" aria-hidden="true">
+        <span class="slide-meta">Слайд 3</span>
+        <h1>Минусы Vibe Coding</h1>
+        <ul>
+          <li>Ограниченный контроль над архитектурой</li>
+          <li>Непрозрачная внутренняя логика сгенерированного решения</li>
+          <li>Зависимость от качества постановки задачи</li>
+          <li>Риск избыточных абстракций</li>
+          <li>Масштабирование без ручной доработки затруднено</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="4" aria-hidden="true">
+        <span class="slide-meta">Слайд 4</span>
+        <h1>Подводные камни</h1>
+        <ul>
+          <li>Уход в сторону интерфейса вместо логики</li>
+          <li>Иллюзия готового продукта для промышленной эксплуатации</li>
+          <li>Разрыв между бизнес-логикой и кодом</li>
+          <li>Технический долг при частых перегенерациях</li>
+          <li>Потеря архитектурного контроля</li>
+          <li>Привязка к поставщику и стеку ИИ-инструментов</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="5" aria-hidden="true">
+        <span class="slide-meta">Слайд 5</span>
+        <h1>Принципы Vibe-ТЗ</h1>
+        <p class="kicker">Качество Vibe Coding на ~80% определяется качеством ТЗ.</p>
+        <ul>
+          <li>Аудитория и контекст использования</li>
+          <li>Ключевой сквозной пользовательский сценарий</li>
+          <li>Тип продукта: SaaS, приложение, панель и т.п.</li>
+          <li>Ключевые экраны и их роль</li>
+          <li>Поведение: состояния и переходы</li>
+          <li>Ограничения: API, стек, производительность</li>
+          <li>Референсы по опыту взаимодействия и визуальной среде</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="6" aria-hidden="true">
+        <span class="slide-meta">Слайд 6</span>
+        <h1>Критически важно в Vibe-ТЗ</h1>
+        <ul>
+          <li>Описывать поведение системы, а не макет интерфейса</li>
+          <li>Мыслить сценариями, а не списком экранов</li>
+          <li>Фиксировать контекст и границы продукта</li>
+          <li>Задавать критерии успеха для системы</li>
+          <li>Определять платформу: мобильная / настольная / кроссплатформенная</li>
+          <li>Учитывать среду использования</li>
+          <li>Тип контента: статический / динамический / смешанный</li>
+          <li>Интеграции: API, аутентификация, внешние сервисы</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="7" aria-hidden="true">
+        <span class="slide-meta">Слайд 7</span>
+        <h1>Ядро Vibe-ТЗ</h1>
+        <ul>
+          <li><strong>Роль системы</strong> — зачем продукт существует</li>
+          <li><strong>Пользовательские сценарии</strong> — ключевые цепочки действий</li>
+          <li><strong>Поведение системы</strong> — логика реакций</li>
+          <li><strong>Состояния</strong> — режимы и переходы</li>
+          <li><strong>Ограничения</strong> — рамки и запреты</li>
+          <li><strong>Критерии успеха</strong> — измеримый результат</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="8" aria-hidden="true">
+        <span class="slide-meta">Слайд 8</span>
+        <h1>Инструменты формирования Vibe-ТЗ</h1>
+        <p class="kicker">Текст ТЗ можно собирать и уточнять с помощью ИИ: диалоговые модели, исследовательские ассистенты, специализированные чат-боты.</p>
+        <ul>
+          <li>Примеры: ChatGPT, Perplexity, DeepSeek и другие крупные языковые модели</li>
+          <li>Роль человека: рамка задачи, проверка связности, ответственность за логику</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-slide="9" aria-hidden="true">
+        <span class="slide-meta">Слайд 9</span>
+        <h1>Платформы генерации</h1>
+        <div class="cols">
+          <div class="col">
+            <h2>Конструкторы с ИИ</h2>
+            <p class="kicker" style="margin-bottom: 16px;">Например Lovable: мало кода, быстрый старт.</p>
+            <ul>
+              <li>Плюсы: скорость, удобно для MVP, мало ручного кода</li>
+              <li>Минусы: слабая кастомизация, ограниченная масштабируемость, зависимость от платформы</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h2>Среда разработки + ИИ</h2>
+            <p class="kicker" style="margin-bottom: 16px;">Cursor, VS Code с плагинами ИИ и аналоги.</p>
+            <ul>
+              <li>Плюсы: полный контроль над кодом, гибкая архитектура, зрелые системы, масштабирование</li>
+              <li>Минусы: выше порог входа, нужен инженерный опыт, медленнее старт</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="10" aria-hidden="true">
+        <span class="slide-meta">Слайд 10</span>
+        <h1>Саммари</h1>
+        <ul>
+          <li>От интерфейсов — к сценариям</li>
+          <li>От кода как центра — к точному описанию</li>
+          <li>От «писать руками» — к проектированию поведения системы</li>
+        </ul>
+        <p class="kicker">ИИ — инструмент сборки продукта, а не только генератор кода.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" id="prev" aria-label="Предыдущий слайд">Назад</button>
+    <span class="counter" id="counter" aria-live="polite">0 / 10</span>
+    <button type="button" id="next" aria-label="Следующий слайд">Вперёд</button>
+  </div>
+  <p class="hint">Стрелки, пробел. Формат 16:9.</p>
+
+  <script>
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+      var idx = 0;
+      var counter = document.getElementById("counter");
+
+      function show(i) {
+        idx = (i + slides.length) % slides.length;
+        slides.forEach(function (el, j) {
+          var on = j === idx;
+          el.classList.toggle("active", on);
+          el.setAttribute("aria-hidden", on ? "false" : "true");
+        });
+        var n = parseInt(slides[idx].getAttribute("data-slide"), 10);
+        counter.textContent = n + " / 10";
+      }
+
+      document.getElementById("prev").addEventListener("click", function () { show(idx - 1); });
+      document.getElementById("next").addEventListener("click", function () { show(idx + 1); });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+          e.preventDefault();
+          show(idx + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault();
+          show(idx - 1);
+        } else if (e.key === "Home") {
+          show(0);
+        } else if (e.key === "End") {
+          show(slides.length - 1);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
