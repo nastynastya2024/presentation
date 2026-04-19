@@ -89,6 +89,61 @@
       max-width: 22ch;
     }
 
+    .slide--about .about-layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(24px, 3.5vw, 48px);
+      align-items: center;
+      width: 100%;
+      max-width: min(900px, 100%);
+    }
+
+    .slide--about .about-photo {
+      width: clamp(132px, 16vw, 200px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+
+    .slide--about .about-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .slide--about .about-tag {
+      font-size: clamp(11px, 1vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .slide--about h1 {
+      max-width: none;
+      margin-bottom: clamp(18px, 2.5vh, 28px);
+    }
+
+    .slide--about .about-copy ul {
+      max-width: min(44ch, 100%);
+    }
+
+    @media (max-width: 520px) {
+      .slide--about .about-layout {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+
+      .slide--about .about-photo {
+        width: clamp(100px, 28vw, 140px);
+      }
+    }
+
     .slide .kicker {
       font-size: clamp(15px, 1.55vw, 19px);
       line-height: 1.5;
@@ -145,6 +200,244 @@
       border-left-color: var(--line);
     }
 
+    .slide--theses .theses-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 2.8vw, 36px);
+      width: 100%;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    .slide--theses .theses-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(11px, 1.4vh, 15px);
+      max-width: none;
+      border-left: 2px solid var(--line);
+      padding-left: clamp(16px, 1.8vw, 22px);
+    }
+
+    .slide--theses .theses-list li {
+      font-size: clamp(12.5px, 1.22vw, 15.5px);
+      line-height: 1.38;
+    }
+
+    .slide--theses .theses-list strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--theses .theses-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide--ai-minus h1 {
+      margin-bottom: clamp(6px, 1vh, 12px);
+    }
+
+    .slide--ai-minus .ai-minus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(14px, 2vh, 22px) clamp(18px, 2.5vw, 28px);
+      width: 100%;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    .slide--ai-minus .ai-minus-item {
+      border-left: 2px solid var(--line);
+      padding-left: clamp(14px, 1.6vw, 20px);
+    }
+
+    .slide--ai-minus .ai-minus-item h2 {
+      font-size: clamp(13px, 1.2vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      margin-bottom: clamp(6px, 0.9vh, 10px);
+      color: var(--text);
+    }
+
+    .slide--ai-minus .ai-minus-item p {
+      font-size: clamp(11.5px, 1.05vw, 13.5px);
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--ai-minus .ai-minus-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide.slide--pros {
+      gap: clamp(12px, 1.6vh, 18px);
+    }
+
+    .slide--pros .pros-head {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: clamp(16px, 2.5vw, 32px);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .slide--pros .pros-head h1 {
+      max-width: none;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .slide--pros .pros-icon {
+      width: clamp(88px, 11vw, 140px);
+      flex-shrink: 0;
+      opacity: 0.92;
+    }
+
+    .slide--pros .pros-icon img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .slide--pros .pros-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 1.6vh, 18px) clamp(16px, 2.2vw, 24px);
+      width: 100%;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    .slide--pros .pros-item {
+      border-left: 2px solid var(--line);
+      padding-left: clamp(12px, 1.4vw, 18px);
+    }
+
+    .slide--pros .pros-item h2 {
+      font-size: clamp(12.5px, 1.12vw, 14.5px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.22;
+      margin-bottom: clamp(4px, 0.6vh, 8px);
+      color: var(--text);
+    }
+
+    .slide--pros .pros-item p {
+      font-size: clamp(11px, 0.98vw, 12.5px);
+      line-height: 1.38;
+      color: var(--muted);
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--pros .pros-icon {
+        width: clamp(72px, 20vw, 110px);
+      }
+
+      .slide--pros .pros-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide--vibe-tz h1 {
+      margin-bottom: clamp(2px, 0.5vh, 6px);
+    }
+
+    .slide--vibe-tz .kicker {
+      margin-bottom: clamp(8px, 1.2vh, 14px);
+      max-width: 100%;
+    }
+
+    .slide--vibe-tz .vibe-tz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(8px, 1.1vh, 12px) clamp(14px, 2vw, 22px);
+      width: 100%;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    .slide--vibe-tz .vibe-tz-item {
+      border-left: 2px solid var(--line);
+      padding-left: clamp(10px, 1.2vw, 16px);
+    }
+
+    .slide--vibe-tz .vibe-tz-item h2 {
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      margin-bottom: clamp(2px, 0.4vh, 5px);
+      color: var(--text);
+    }
+
+    .slide--vibe-tz .vibe-tz-item p {
+      font-size: clamp(10px, 0.92vw, 12px);
+      line-height: 1.34;
+      color: var(--muted);
+    }
+
+    .slide--vibe-tz .vibe-tz-item strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--vibe-tz .vibe-tz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide--core h1 {
+      margin-bottom: clamp(6px, 1vh, 12px);
+    }
+
+    .slide--core .core-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 1.6vh, 18px) clamp(16px, 2.2vw, 24px);
+      width: 100%;
+      max-width: 100%;
+      align-items: start;
+    }
+
+    .slide--core .core-item {
+      border-left: 2px solid var(--line);
+      padding-left: clamp(12px, 1.4vw, 18px);
+    }
+
+    .slide--core .core-item h2 {
+      font-size: clamp(12px, 1.08vw, 14px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.22;
+      margin-bottom: clamp(4px, 0.6vh, 8px);
+      color: var(--text);
+    }
+
+    .slide--core .core-item p {
+      font-size: clamp(10.5px, 0.98vw, 12.5px);
+      line-height: 1.38;
+      color: var(--muted);
+    }
+
+    .slide--core .core-item strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--core .core-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .toolbar {
       display: flex;
       align-items: center;
@@ -191,109 +484,145 @@
 <body>
   <div class="stage" role="region" aria-label="Слайды презентации">
     <div class="slides" id="slides">
-      <section class="slide active" data-slide="0" aria-hidden="false">
+      <section class="slide slide--about active" data-slide="0" aria-hidden="false">
         <span class="slide-meta">Слайд 0</span>
-        <h1>Обо мне</h1>
-        <ul>
-          <li>10 лет в IT</li>
-          <li>Опыт: разработка, продукт, архитектура, инструменты на базе ИИ</li>
-          <li>Фокус: переход от классической разработки к работе с ИИ и сценарному проектированию продуктов</li>
-        </ul>
+        <div class="about-layout">
+          <div class="about-photo">
+            <img src="assets/komarova.png" width="400" height="400" alt="Комарова Анастасия" />
+          </div>
+          <div class="about-copy">
+            <p class="about-tag">Обо мне</p>
+            <h1>Комарова Анастасия</h1>
+            <ul>
+              <li>10 лет в IT</li>
+              <li>Опыт: разработка, продукт, архитектура, инструменты на базе ИИ</li>
+              <li>Фокус: переход от классической разработки к работе с ИИ и сценарному проектированию продуктов</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <section class="slide" data-slide="1" aria-hidden="true">
+      <section class="slide slide--theses" data-slide="1" aria-hidden="true">
         <span class="slide-meta">Слайд 1</span>
         <h1>Vibe Coding как подход к разработке</h1>
-        <p class="kicker">Продукт задаётся не экранами и строками кода, а сценариями, поведением системы и продуктовой логикой. ИИ интерпретирует описание и собирает из него работающую систему.</p>
-        <ul>
-          <li>Пользовательские сценарии</li>
-          <li>Поведение системы</li>
-          <li>Смысл и логика продукта</li>
-        </ul>
+        <div class="theses-cols">
+          <ul class="theses-list">
+            <li><strong>Основной язык разработки</strong> — <strong>простой текст</strong>, описывающий продукт без привязки к <strong>коду</strong> и <strong>интерфейсам</strong></li>
+            <li><strong>Продукт</strong> формируется через <strong>пользовательские сценарии</strong>: что человек делает, зачем и в каком контексте</li>
+            <li><strong>Поведение системы</strong> задаётся как ожидаемая реакция на <strong>действия пользователя</strong> и <strong>внешние события</strong></li>
+          </ul>
+          <ul class="theses-list">
+            <li>В центре — <strong>смысл и логика продукта</strong>: какие <strong>задачи</strong> он решает и как именно должен вести себя в <strong>разных ситуациях</strong></li>
+            <li><strong>Интерфейс и код</strong> — <strong>следствие</strong> описанной <strong>логики</strong>, а не <strong>отправная точка</strong> разработки</li>
+            <li><strong>ИИ</strong> интерпретирует <strong>текстовое описание</strong> и преобразует его в <strong>работающую систему</strong></li>
+          </ul>
+        </div>
       </section>
 
-      <section class="slide" data-slide="2" aria-hidden="true">
+      <section class="slide slide--pros" data-slide="2" aria-hidden="true">
         <span class="slide-meta">Слайд 2</span>
-        <h1>Плюсы Vibe Coding</h1>
-        <ul>
-          <li>Быстрое прототипирование: идея → продукт</li>
-          <li>Низкий порог входа в разработку</li>
-          <li>Фокус на продуктовой логике</li>
-          <li>Итерации через уточнение описания</li>
-          <li>ИИ ускоряет проектирование архитектуры и сборку компонентов</li>
-        </ul>
+        <div class="pros-head">
+          <h1>Плюсы Vibe Coding</h1>
+          <div class="pros-icon" aria-hidden="true">
+            <img src="assets/vibe-pros-icon.png" width="280" height="280" alt="" />
+          </div>
+        </div>
+        <div class="pros-grid">
+          <div class="pros-item">
+            <h2>Быстрое прототипирование: идея → продукт</h2>
+            <p>Позволяет за короткое время превратить описание идеи в рабочий прототип, минуя долгую ручную разработку и ускоряя проверку гипотез.</p>
+          </div>
+          <div class="pros-item">
+            <h2>Низкий порог входа в разработку</h2>
+            <p>Для создания продукта достаточно уметь формулировать задачи и сценарии, без глубокого знания кода и фреймворков.</p>
+          </div>
+          <div class="pros-item">
+            <h2>Фокус на продуктовой логике</h2>
+            <p>В центре внимания остаются сценарии пользователей, бизнес-правила и поведение системы, а не реализация интерфейса или технические детали.</p>
+          </div>
+          <div class="pros-item">
+            <h2>ИИ ускоряет проектирование архитектуры и сборку компонентов</h2>
+            <p>Система автоматически предлагает структуру приложения и готовые элементы, сокращая время на проектирование и базовую реализацию.</p>
+          </div>
+        </div>
       </section>
 
-      <section class="slide" data-slide="3" aria-hidden="true">
+      <section class="slide slide--ai-minus" data-slide="3" aria-hidden="true">
         <span class="slide-meta">Слайд 3</span>
-        <h1>Минусы Vibe Coding</h1>
-        <ul>
-          <li>Ограниченный контроль над архитектурой</li>
-          <li>Непрозрачная внутренняя логика сгенерированного решения</li>
-          <li>Зависимость от качества постановки задачи</li>
-          <li>Риск избыточных абстракций</li>
-          <li>Масштабирование без ручной доработки затруднено</li>
-        </ul>
+        <h1>Минусы ИИ-разработки</h1>
+        <div class="ai-minus-grid">
+          <div class="ai-minus-item">
+            <h2>Иллюзия готового продукта для продакшена</h2>
+            <p>ИИ быстро собирает рабочий прототип, но он часто не учитывает реальные требования: нагрузку, безопасность, ошибки и крайние сценарии. В итоге продукт выглядит завершённым, но по факту остаётся MVP, не готовый к эксплуатации.</p>
+          </div>
+          <div class="ai-minus-item">
+            <h2>Качество кода</h2>
+            <p>Код генерируется под скорость, а не под поддержку. Часто появляются дубли, слабая структура и неочевидные зависимости, из-за чего систему сложно развивать и масштабировать.</p>
+          </div>
+          <div class="ai-minus-item">
+            <h2>Потеря архитектурного контроля</h2>
+            <p>Часть решений уходит в генерацию, и структура проекта перестаёт быть полностью управляемой. Это приводит к размытым границам модулей и ухудшению масштабируемости.</p>
+          </div>
+          <div class="ai-minus-item">
+            <h2>Привязка к ИИ-инструментам</h2>
+            <p>Логика разработки зависит от конкретных моделей и платформ. Перенос на другой стек или отказ от ИИ требует переработки архитектуры и кода.</p>
+          </div>
+        </div>
       </section>
 
-      <section class="slide" data-slide="4" aria-hidden="true">
+      <section class="slide slide--vibe-tz" data-slide="4" aria-hidden="true">
         <span class="slide-meta">Слайд 4</span>
-        <h1>Подводные камни</h1>
-        <ul>
-          <li>Уход в сторону интерфейса вместо логики</li>
-          <li>Иллюзия готового продукта для промышленной эксплуатации</li>
-          <li>Разрыв между бизнес-логикой и кодом</li>
-          <li>Технический долг при частых перегенерациях</li>
-          <li>Потеря архитектурного контроля</li>
-          <li>Привязка к поставщику и стеку ИИ-инструментов</li>
-        </ul>
-      </section>
-
-      <section class="slide" data-slide="5" aria-hidden="true">
-        <span class="slide-meta">Слайд 5</span>
         <h1>Принципы Vibe-ТЗ</h1>
         <p class="kicker">Качество Vibe Coding на ~80% определяется качеством ТЗ.</p>
-        <ul>
-          <li>Аудитория и контекст использования</li>
-          <li>Ключевой сквозной пользовательский сценарий</li>
-          <li>Тип продукта: SaaS, приложение, панель и т.п.</li>
-          <li>Ключевые экраны и их роль</li>
-          <li>Поведение: состояния и переходы</li>
-          <li>Ограничения: API, стек, производительность</li>
-          <li>Референсы по опыту взаимодействия и визуальной среде</li>
-        </ul>
+        <div class="vibe-tz-grid">
+          <div class="vibe-tz-item">
+            <h2>Аудитория и контекст использования</h2>
+            <p>Определяет, <strong>для кого создаётся продукт</strong> и <strong>в каких условиях он используется</strong>: <strong>роли пользователей, их задачи, среду и частоту взаимодействия</strong>.</p>
+          </div>
+          <div class="vibe-tz-item">
+            <h2>Ключевой сквозной пользовательский сценарий</h2>
+            <p>Описывает <strong>основной путь пользователя от входа до достижения цели</strong>, без разрывов и второстепенных деталей.</p>
+          </div>
+          <div class="vibe-tz-item">
+            <h2>Тип продукта: SaaS, приложение, панель и т.п.</h2>
+            <p>Фиксирует <strong>формат системы</strong>, что влияет на <strong>логику взаимодействия, структуру и модель использования</strong>.</p>
+          </div>
+          <div class="vibe-tz-item">
+            <h2>Ключевые экраны и их роль</h2>
+            <p>Определяют <strong>основные точки взаимодействия и их функцию</strong> в пользовательском пути: <strong>вход, работа, результат, управление</strong>.</p>
+          </div>
+          <div class="vibe-tz-item">
+            <h2>Референсы по опыту взаимодействия и визуальной среде</h2>
+            <p>Задают <strong>ориентиры по UX/UI</strong> и помогают сформировать <strong>ожидаемый уровень удобства и визуального стиля продукта</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide slide--core" data-slide="5" aria-hidden="true">
+        <span class="slide-meta">Слайд 5</span>
+        <h1>Ядро Vibe-ТЗ</h1>
+        <div class="core-grid">
+          <div class="core-item">
+            <h2>Роль системы — зачем продукт существует + типы пользователей</h2>
+            <p>Определяет <strong>назначение продукта и его ценность</strong>: какую <strong>задачу он решает</strong> и для <strong>каких ролей</strong> (новички, администраторы, бизнес-пользователи и т.д.), включая их <strong>цели и мотивацию</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>Пользовательские сценарии — ключевые цепочки действий</h2>
+            <p>Описывает <strong>основные пути взаимодействия пользователя с системой от входа до результата</strong>, фиксируя <strong>последовательность шагов без привязки к интерфейсу</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>Поведение системы — логика реакций</h2>
+            <p>Задаёт, <strong>как система отвечает на действия пользователя или события</strong>: какие <strong>операции выполняет</strong>, какие <strong>данные меняет</strong>, какие <strong>результаты возвращает</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>Наличие интеграций — взаимодействия с другими системами</h2>
+            <p>Определяет <strong>внешнюю экосистему продукта</strong>: какие <strong>сервисы, API и платформы</strong> подключаются (платежи, авторизация, CRM, аналитика и т.д.), какие данные передаются и в каком формате. <strong>Фиксирует границы ответственности системы</strong> и <strong>зависимость от внешних компонентов</strong>.</p>
+          </div>
+        </div>
       </section>
 
       <section class="slide" data-slide="6" aria-hidden="true">
         <span class="slide-meta">Слайд 6</span>
-        <h1>Критически важно в Vibe-ТЗ</h1>
-        <ul>
-          <li>Описывать поведение системы, а не макет интерфейса</li>
-          <li>Мыслить сценариями, а не списком экранов</li>
-          <li>Фиксировать контекст и границы продукта</li>
-          <li>Задавать критерии успеха для системы</li>
-          <li>Определять платформу: мобильная / настольная / кроссплатформенная</li>
-          <li>Учитывать среду использования</li>
-          <li>Тип контента: статический / динамический / смешанный</li>
-          <li>Интеграции: API, аутентификация, внешние сервисы</li>
-        </ul>
-      </section>
-
-      <section class="slide" data-slide="7" aria-hidden="true">
-        <span class="slide-meta">Слайд 7</span>
-        <h1>Ядро Vibe-ТЗ</h1>
-        <ul>
-          <li><strong>Роль системы</strong> — зачем продукт существует</li>
-          <li><strong>Пользовательские сценарии</strong> — ключевые цепочки действий</li>
-          <li><strong>Поведение системы</strong> — логика реакций</li>
-          <li><strong>Состояния</strong> — режимы и переходы</li>
-          <li><strong>Ограничения</strong> — рамки и запреты</li>
-          <li><strong>Критерии успеха</strong> — измеримый результат</li>
-        </ul>
-      </section>
-
-      <section class="slide" data-slide="8" aria-hidden="true">
-        <span class="slide-meta">Слайд 8</span>
         <h1>Инструменты формирования Vibe-ТЗ</h1>
         <p class="kicker">Текст ТЗ можно собирать и уточнять с помощью ИИ: диалоговые модели, исследовательские ассистенты, специализированные чат-боты.</p>
         <ul>
@@ -302,8 +631,8 @@
         </ul>
       </section>
 
-      <section class="slide" data-slide="9" aria-hidden="true">
-        <span class="slide-meta">Слайд 9</span>
+      <section class="slide" data-slide="7" aria-hidden="true">
+        <span class="slide-meta">Слайд 7</span>
         <h1>Платформы генерации</h1>
         <div class="cols">
           <div class="col">
@@ -325,8 +654,8 @@
         </div>
       </section>
 
-      <section class="slide" data-slide="10" aria-hidden="true">
-        <span class="slide-meta">Слайд 10</span>
+      <section class="slide" data-slide="8" aria-hidden="true">
+        <span class="slide-meta">Слайд 8</span>
         <h1>Саммари</h1>
         <ul>
           <li>От интерфейсов — к сценариям</li>
@@ -340,7 +669,7 @@
 
   <div class="toolbar">
     <button type="button" id="prev" aria-label="Предыдущий слайд">Назад</button>
-    <span class="counter" id="counter" aria-live="polite">0 / 10</span>
+    <span class="counter" id="counter" aria-live="polite">0 / 8</span>
     <button type="button" id="next" aria-label="Следующий слайд">Вперёд</button>
   </div>
   <p class="hint">Стрелки, пробел. Формат 16:9.</p>
@@ -359,7 +688,7 @@
           el.setAttribute("aria-hidden", on ? "false" : "true");
         });
         var n = parseInt(slides[idx].getAttribute("data-slide"), 10);
-        counter.textContent = n + " / 10";
+        counter.textContent = n + " / 8";
       }
 
       document.getElementById("prev").addEventListener("click", function () { show(idx - 1); });
