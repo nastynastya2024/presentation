@@ -55,10 +55,26 @@
       position: relative;
     }
 
+    .stage-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      padding: 8px clamp(16px, 2.5vw, 28px);
+      font-size: clamp(11px, 0.95vw, 13px);
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.03em;
+      border-top: 1px solid var(--line);
+      background: var(--slide);
+      pointer-events: none;
+    }
+
     .slide {
       position: absolute;
       inset: 0;
-      padding: clamp(40px, 6vh, 72px) clamp(48px, 7vw, 96px);
+      padding: clamp(40px, 6vh, 72px) clamp(48px, 7vw, 96px) clamp(48px, 6vh, 64px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -79,6 +95,23 @@
       text-transform: uppercase;
       color: var(--muted);
       font-weight: 500;
+    }
+
+    .slide--vibe-def {
+      justify-content: center;
+      text-align: left;
+    }
+
+    .slide--vibe-def h1 {
+      max-width: 20ch;
+    }
+
+    .slide--vibe-def .vibe-def-lead {
+      font-size: clamp(17px, 1.85vw, 26px);
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: min(38ch, 92%);
+      font-weight: 400;
     }
 
     .slide h1 {
@@ -438,6 +471,30 @@
       }
     }
 
+    .slide--summary.slide--core h1 {
+      margin-bottom: clamp(4px, 0.7vh, 8px);
+    }
+
+    .slide--summary.slide--core .core-grid {
+      gap: clamp(8px, 1.2vh, 14px) clamp(14px, 2vw, 20px);
+    }
+
+    .slide--summary.slide--core .core-item h2 {
+      font-size: clamp(11px, 1vw, 13px);
+      line-height: 1.18;
+      margin-bottom: clamp(2px, 0.45vh, 6px);
+    }
+
+    .slide--summary.slide--core .core-item p {
+      font-size: clamp(10px, 0.9vw, 11.75px);
+      line-height: 1.33;
+    }
+
+    .slide--summary.slide--core .core-item:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: min(64ch, 100%);
+    }
+
     .toolbar {
       display: flex;
       align-items: center;
@@ -485,7 +542,7 @@
   <div class="stage" role="region" aria-label="Слайды презентации">
     <div class="slides" id="slides">
       <section class="slide slide--about active" data-slide="0" aria-hidden="false">
-        <span class="slide-meta">Слайд 0</span>
+        <span class="slide-meta">Слайд 1</span>
         <div class="about-layout">
           <div class="about-photo">
             <img src="assets/komarova.png" width="400" height="400" alt="Комарова Анастасия" />
@@ -503,7 +560,7 @@
       </section>
 
       <section class="slide slide--theses" data-slide="1" aria-hidden="true">
-        <span class="slide-meta">Слайд 1</span>
+        <span class="slide-meta">Слайд 2</span>
         <h1>Vibe Coding как подход к разработке</h1>
         <div class="theses-cols">
           <ul class="theses-list">
@@ -520,7 +577,7 @@
       </section>
 
       <section class="slide slide--pros" data-slide="2" aria-hidden="true">
-        <span class="slide-meta">Слайд 2</span>
+        <span class="slide-meta">Слайд 3</span>
         <div class="pros-head">
           <h1>Плюсы Vibe Coding</h1>
           <div class="pros-icon" aria-hidden="true">
@@ -548,7 +605,7 @@
       </section>
 
       <section class="slide slide--ai-minus" data-slide="3" aria-hidden="true">
-        <span class="slide-meta">Слайд 3</span>
+        <span class="slide-meta">Слайд 4</span>
         <h1>Минусы ИИ-разработки</h1>
         <div class="ai-minus-grid">
           <div class="ai-minus-item">
@@ -570,19 +627,39 @@
         </div>
       </section>
 
-      <section class="slide slide--vibe-tz" data-slide="4" aria-hidden="true">
-        <span class="slide-meta">Слайд 4</span>
-        <h1>Принципы Vibe-ТЗ</h1>
-        <p class="kicker">Качество Vibe Coding на ~80% определяется качеством ТЗ.</p>
-        <div class="vibe-tz-grid">
-          <div class="vibe-tz-item">
+      <section class="slide slide--core" data-slide="4" aria-hidden="true">
+        <span class="slide-meta">Слайд 5</span>
+        <h1>Ядро Vibe-ТЗ</h1>
+        <div class="core-grid">
+          <div class="core-item">
             <h2>Аудитория и контекст использования</h2>
             <p>Определяет, <strong>для кого создаётся продукт</strong> и <strong>в каких условиях он используется</strong>: <strong>роли пользователей, их задачи, среду и частоту взаимодействия</strong>.</p>
           </div>
-          <div class="vibe-tz-item">
+          <div class="core-item">
             <h2>Ключевой сквозной пользовательский сценарий</h2>
             <p>Описывает <strong>основной путь пользователя от входа до достижения цели</strong>, без разрывов и второстепенных деталей.</p>
           </div>
+          <div class="core-item">
+            <h2>Роль системы — зачем продукт существует + типы пользователей</h2>
+            <p>Определяет <strong>назначение продукта и его ценность</strong>: какую <strong>задачу он решает</strong> и для <strong>каких ролей</strong> (новички, администраторы, бизнес-пользователи и т.д.), включая их <strong>цели и мотивацию</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>Пользовательские сценарии — ключевые цепочки действий</h2>
+            <p>Описывает <strong>основные пути взаимодействия пользователя с системой от входа до результата</strong>, фиксируя <strong>последовательность шагов без привязки к интерфейсу</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide slide--vibe-def" data-slide="5" aria-hidden="true">
+        <span class="slide-meta">Слайд 6</span>
+        <h1>Что такое Vibe-ТЗ</h1>
+        <p class="kicker vibe-def-lead">Качество Vibe Coding на ~80% определяется качеством ТЗ.</p>
+      </section>
+
+      <section class="slide slide--vibe-tz" data-slide="6" aria-hidden="true">
+        <span class="slide-meta">Слайд 7</span>
+        <h1>Принципы Vibe-ТЗ</h1>
+        <div class="vibe-tz-grid">
           <div class="vibe-tz-item">
             <h2>Тип продукта: SaaS, приложение, панель и т.п.</h2>
             <p>Фиксирует <strong>формат системы</strong>, что влияет на <strong>логику взаимодействия, структуру и модель использования</strong>.</p>
@@ -592,37 +669,22 @@
             <p>Определяют <strong>основные точки взаимодействия и их функцию</strong> в пользовательском пути: <strong>вход, работа, результат, управление</strong>.</p>
           </div>
           <div class="vibe-tz-item">
+            <h2>Поведение системы — логика реакций</h2>
+            <p>Задаёт, <strong>как система отвечает на действия пользователя или события</strong>: какие <strong>операции выполняет</strong>, какие <strong>данные меняет</strong>, какие <strong>результаты возвращает</strong>.</p>
+          </div>
+          <div class="vibe-tz-item">
+            <h2>Наличие интеграций — взаимодействия с другими системами</h2>
+            <p>Определяет <strong>внешнюю экосистему продукта</strong>: какие <strong>сервисы, API и платформы</strong> подключаются (платежи, авторизация, CRM, аналитика и т.д.), какие данные передаются и в каком формате. <strong>Фиксирует границы ответственности системы</strong> и <strong>зависимость от внешних компонентов</strong>.</p>
+          </div>
+          <div class="vibe-tz-item">
             <h2>Референсы по опыту взаимодействия и визуальной среде</h2>
             <p>Задают <strong>ориентиры по UX/UI</strong> и помогают сформировать <strong>ожидаемый уровень удобства и визуального стиля продукта</strong>.</p>
           </div>
         </div>
       </section>
 
-      <section class="slide slide--core" data-slide="5" aria-hidden="true">
-        <span class="slide-meta">Слайд 5</span>
-        <h1>Ядро Vibe-ТЗ</h1>
-        <div class="core-grid">
-          <div class="core-item">
-            <h2>Роль системы — зачем продукт существует + типы пользователей</h2>
-            <p>Определяет <strong>назначение продукта и его ценность</strong>: какую <strong>задачу он решает</strong> и для <strong>каких ролей</strong> (новички, администраторы, бизнес-пользователи и т.д.), включая их <strong>цели и мотивацию</strong>.</p>
-          </div>
-          <div class="core-item">
-            <h2>Пользовательские сценарии — ключевые цепочки действий</h2>
-            <p>Описывает <strong>основные пути взаимодействия пользователя с системой от входа до результата</strong>, фиксируя <strong>последовательность шагов без привязки к интерфейсу</strong>.</p>
-          </div>
-          <div class="core-item">
-            <h2>Поведение системы — логика реакций</h2>
-            <p>Задаёт, <strong>как система отвечает на действия пользователя или события</strong>: какие <strong>операции выполняет</strong>, какие <strong>данные меняет</strong>, какие <strong>результаты возвращает</strong>.</p>
-          </div>
-          <div class="core-item">
-            <h2>Наличие интеграций — взаимодействия с другими системами</h2>
-            <p>Определяет <strong>внешнюю экосистему продукта</strong>: какие <strong>сервисы, API и платформы</strong> подключаются (платежи, авторизация, CRM, аналитика и т.д.), какие данные передаются и в каком формате. <strong>Фиксирует границы ответственности системы</strong> и <strong>зависимость от внешних компонентов</strong>.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide" data-slide="6" aria-hidden="true">
-        <span class="slide-meta">Слайд 6</span>
+      <section class="slide" data-slide="7" aria-hidden="true">
+        <span class="slide-meta">Слайд 8</span>
         <h1>Инструменты формирования Vibe-ТЗ</h1>
         <p class="kicker">Текст ТЗ можно собирать и уточнять с помощью ИИ: диалоговые модели, исследовательские ассистенты, специализированные чат-боты.</p>
         <ul>
@@ -631,8 +693,8 @@
         </ul>
       </section>
 
-      <section class="slide" data-slide="7" aria-hidden="true">
-        <span class="slide-meta">Слайд 7</span>
+      <section class="slide" data-slide="8" aria-hidden="true">
+        <span class="slide-meta">Слайд 9</span>
         <h1>Платформы генерации</h1>
         <div class="cols">
           <div class="col">
@@ -654,22 +716,35 @@
         </div>
       </section>
 
-      <section class="slide" data-slide="8" aria-hidden="true">
-        <span class="slide-meta">Слайд 8</span>
+      <section class="slide slide--core slide--summary" data-slide="9" aria-hidden="true">
+        <span class="slide-meta">Слайд 10</span>
         <h1>Саммари</h1>
-        <ul>
-          <li>От интерфейсов — к сценариям</li>
-          <li>От кода как центра — к точному описанию</li>
-          <li>От «писать руками» — к проектированию поведения системы</li>
-        </ul>
-        <p class="kicker">ИИ — инструмент сборки продукта, а не только генератор кода.</p>
+        <div class="core-grid">
+          <div class="core-item">
+            <h2>Vibe Coding — прежде всего про MVP</h2>
+            <p>Подход оптимален для <strong>быстрого запуска и проверки идей</strong>, но <strong>не заменяет полноценную инженерную проработку</strong> для <strong>production</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>ТЗ = 80% успеха</h2>
+            <p>Качество результата напрямую зависит от того, <strong>насколько точно описаны сценарии, логика и поведение системы</strong>.</p>
+          </div>
+          <div class="core-item">
+            <h2>Нужно явно учитывать нефункциональные требования</h2>
+            <p><strong>Производительность, масштабируемость, отказоустойчивость</strong> — всё это не появляется «само», это нужно <strong>закладывать в ТЗ</strong>. <strong>Безопасность тоже не по умолчанию</strong>: <strong>авторизация, защита данных, работа с API и доступами</strong> должны быть явно описаны — иначе система будет уязвимой.</p>
+          </div>
+          <div class="core-item">
+            <h2>ИИ не думает за продукт</h2>
+            <p><strong>Он реализует то, что описано</strong> — ошибки и пробелы в логике напрямую попадают в систему.</p>
+          </div>
+        </div>
       </section>
     </div>
+    <footer class="stage-footer" id="stage-footer" aria-live="polite">Комарова Анастасия — Слайд 1 из 10</footer>
   </div>
 
   <div class="toolbar">
     <button type="button" id="prev" aria-label="Предыдущий слайд">Назад</button>
-    <span class="counter" id="counter" aria-live="polite">0 / 8</span>
+    <span class="counter" id="counter" aria-live="polite">1 / 10</span>
     <button type="button" id="next" aria-label="Следующий слайд">Вперёд</button>
   </div>
   <p class="hint">Стрелки, пробел. Формат 16:9.</p>
@@ -679,6 +754,8 @@
       var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
       var idx = 0;
       var counter = document.getElementById("counter");
+      var footer = document.getElementById("stage-footer");
+      var author = "Комарова Анастасия";
 
       function show(i) {
         idx = (i + slides.length) % slides.length;
@@ -687,9 +764,13 @@
           el.classList.toggle("active", on);
           el.setAttribute("aria-hidden", on ? "false" : "true");
         });
-        var n = parseInt(slides[idx].getAttribute("data-slide"), 10);
-        counter.textContent = n + " / 8";
+        var num = idx + 1;
+        var total = slides.length;
+        counter.textContent = num + " / " + total;
+        footer.textContent = author + " — Слайд " + num + " из " + total;
       }
+
+      show(0);
 
       document.getElementById("prev").addEventListener("click", function () { show(idx - 1); });
       document.getElementById("next").addEventListener("click", function () { show(idx + 1); });
