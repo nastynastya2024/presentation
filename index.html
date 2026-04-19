@@ -14,6 +14,30 @@
       --line: #e0ddd6;
       --accent: #1a1a1a;
       --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      /* Единая шкала: отступы */
+      --pad-x: clamp(44px, 6.5vw, 88px);
+      --pad-y-top: clamp(36px, 5.5vh, 64px);
+      --pad-y-bottom: clamp(44px, 5.8vh, 72px);
+      --gap-stack: clamp(18px, 2.4vh, 28px);
+      --gap-after-h1: clamp(8px, 1.2vh, 14px);
+      --gap-grid-row: clamp(14px, 1.8vh, 22px);
+      --gap-grid-col: clamp(18px, 2.4vw, 30px);
+      --gap-inline: clamp(20px, 3vw, 40px);
+      --gap-list: clamp(12px, 1.5vh, 18px);
+      --pl-rail: clamp(14px, 1.65vw, 22px);
+      --border-rail: 2px solid var(--line);
+
+      /* Единая шкала: типографика */
+      --fs-h1: clamp(26px, 2.75vw, 40px);
+      --fs-lead: clamp(15px, 1.4vw, 19px);
+      --fs-body: clamp(13px, 1.12vw, 16px);
+      --fs-card-title: clamp(14.5px, 1.32vw, 18px);
+      --fs-card-desc: clamp(11px, 0.95vw, 13.5px);
+      --fs-meta: clamp(11px, 0.92vw, 12px);
+      --lh-h1: 1.14;
+      --lh-title: 1.22;
+      --lh-body: 1.42;
     }
 
     * {
@@ -61,8 +85,8 @@
       right: 0;
       bottom: 0;
       z-index: 4;
-      padding: 8px clamp(16px, 2.5vw, 28px);
-      font-size: clamp(11px, 0.95vw, 13px);
+      padding: 8px var(--pad-x);
+      font-size: var(--fs-meta);
       color: var(--muted);
       text-align: center;
       letter-spacing: 0.03em;
@@ -74,11 +98,11 @@
     .slide {
       position: absolute;
       inset: 0;
-      padding: clamp(40px, 6vh, 72px) clamp(48px, 7vw, 96px) clamp(48px, 6vh, 64px);
+      padding: var(--pad-y-top) var(--pad-x) var(--pad-y-bottom);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: clamp(24px, 3.5vh, 40px);
+      gap: var(--gap-stack);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.28s ease;
@@ -89,50 +113,130 @@
       pointer-events: auto;
     }
 
-    .slide-meta {
-      font-size: clamp(11px, 1vw, 12px);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
     .slide--vibe-def {
-      justify-content: center;
+      justify-content: flex-start;
       text-align: left;
     }
 
+    .slide--vibe-def .vibe-def-layout {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: center;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .slide--vibe-def .vibe-def-text-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      padding: var(--gap-stack) var(--gap-inline) var(--gap-stack) 0;
+    }
+
+    .slide--vibe-def .vibe-def-icon-pane {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--gap-stack);
+      min-height: 0;
+    }
+
+    .slide--vibe-def .vibe-def-icon {
+      width: min(88%, clamp(140px, 20vw, 260px));
+      flex-shrink: 0;
+      opacity: 0.95;
+    }
+
+    .slide--vibe-def .vibe-def-icon img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .slide--vibe-def h1 {
-      max-width: 20ch;
+      max-width: none;
+    }
+
+    .slide--vibe-def .vibe-def-copy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-list);
+      max-width: min(48ch, 100%);
+    }
+
+    @media (max-aspect-ratio: 5/4), (max-width: 560px) {
+      .slide--vibe-def .vibe-def-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        align-items: stretch;
+      }
+
+      .slide--vibe-def .vibe-def-text-col {
+        padding: var(--gap-list) 0 0;
+      }
+
+      .slide--vibe-def .vibe-def-icon-pane {
+        padding: var(--gap-list) 0;
+      }
+
+      .slide--vibe-def .vibe-def-icon {
+        width: min(48vw, 180px);
+      }
     }
 
     .slide--vibe-def .vibe-def-lead {
-      font-size: clamp(17px, 1.85vw, 26px);
-      line-height: 1.45;
+      font-size: var(--fs-lead);
+      line-height: var(--lh-body);
       color: var(--muted);
-      max-width: min(38ch, 92%);
+      max-width: none;
+      font-weight: 400;
+    }
+
+    .slide--vibe-def .vibe-def-note {
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      color: var(--muted);
       font-weight: 400;
     }
 
     .slide h1 {
-      font-size: clamp(26px, 3.4vw, 44px);
+      font-size: var(--fs-h1);
       font-weight: 600;
-      line-height: 1.12;
+      line-height: var(--lh-h1);
       letter-spacing: -0.03em;
-      max-width: 22ch;
+      max-width: 24ch;
+      margin-bottom: var(--gap-after-h1);
+    }
+
+    .slide--about {
+      justify-content: flex-start;
     }
 
     .slide--about .about-layout {
+      flex: 1;
+      min-height: 0;
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: clamp(24px, 3.5vw, 48px);
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
       width: 100%;
-      max-width: min(900px, 100%);
+      max-width: 100%;
+    }
+
+    .slide--about .about-photo-pane {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--gap-stack);
+      min-height: 0;
     }
 
     .slide--about .about-photo {
-      width: clamp(132px, 16vw, 200px);
+      width: min(72%, clamp(160px, 22vw, 280px));
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
@@ -148,56 +252,77 @@
       object-position: center 22%;
     }
 
+    .slide--about .about-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--gap-stack) var(--gap-inline);
+      min-height: 0;
+    }
+
     .slide--about .about-tag {
-      font-size: clamp(11px, 1vw, 12px);
+      font-size: var(--fs-meta);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
       font-weight: 500;
-      margin-bottom: 10px;
+      margin-bottom: var(--gap-list);
     }
 
     .slide--about h1 {
       max-width: none;
-      margin-bottom: clamp(18px, 2.5vh, 28px);
+      margin-bottom: var(--gap-stack);
     }
 
     .slide--about .about-copy ul {
       max-width: min(44ch, 100%);
     }
 
-    @media (max-width: 520px) {
+    @media (max-aspect-ratio: 5/4), (max-width: 560px) {
       .slide--about .about-layout {
         grid-template-columns: 1fr;
-        justify-items: start;
+        grid-template-rows: auto 1fr;
+      }
+
+      .slide--about .about-photo-pane {
+        padding: var(--gap-list) var(--gap-stack);
       }
 
       .slide--about .about-photo {
-        width: clamp(100px, 28vw, 140px);
+        width: min(40vw, 200px);
+      }
+
+      .slide--about .about-copy {
+        justify-content: flex-start;
+        padding: var(--gap-stack) 0 0;
       }
     }
 
     .slide .kicker {
-      font-size: clamp(15px, 1.55vw, 19px);
-      line-height: 1.5;
+      font-size: var(--fs-lead);
+      line-height: var(--lh-body);
       color: var(--muted);
-      max-width: min(42ch, 94%);
+      max-width: min(44ch, 94%);
       font-weight: 400;
+    }
+
+    .slide .col .kicker {
+      margin-bottom: var(--gap-list);
     }
 
     .slide ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: clamp(14px, 1.8vh, 20px);
+      gap: var(--gap-list);
       max-width: min(48ch, 96%);
-      border-left: 2px solid var(--line);
-      padding-left: clamp(20px, 2.2vw, 28px);
+      border-left: var(--border-rail);
+      padding-left: var(--pl-rail);
     }
 
     .slide li {
-      font-size: clamp(15px, 1.5vw, 18px);
-      line-height: 1.45;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
       color: var(--text);
     }
 
@@ -209,7 +334,7 @@
     .slide .cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(28px, 4vw, 56px);
+      gap: var(--gap-grid-row) var(--gap-grid-col);
       max-width: 100%;
       align-items: start;
     }
@@ -221,40 +346,55 @@
     }
 
     .slide .col h2 {
-      font-size: clamp(12px, 1.05vw, 13px);
+      font-size: var(--fs-card-title);
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--muted);
       font-weight: 600;
-      margin-bottom: clamp(14px, 2vh, 20px);
+      margin-bottom: var(--gap-list);
     }
 
     .slide .col ul {
       border-left-color: var(--line);
     }
 
-    .slide--theses .theses-cols {
+    /* Двухколоночные сетки — общие отступы */
+    .slide--theses .theses-cols,
+    .slide--ai-minus .ai-minus-grid,
+    .slide--pros .pros-grid,
+    .slide--vibe-tz .vibe-tz-grid,
+    .slide--core .core-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(20px, 2.8vw, 36px);
+      gap: var(--gap-grid-row) var(--gap-grid-col);
       width: 100%;
       max-width: 100%;
       align-items: start;
+    }
+
+    @media (max-aspect-ratio: 5/4) {
+      .slide--theses .theses-cols,
+      .slide--ai-minus .ai-minus-grid,
+      .slide--pros .pros-grid,
+      .slide--vibe-tz .vibe-tz-grid,
+      .slide--core .core-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .slide--theses .theses-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: clamp(11px, 1.4vh, 15px);
+      gap: var(--gap-list);
       max-width: none;
-      border-left: 2px solid var(--line);
-      padding-left: clamp(16px, 1.8vw, 22px);
+      border-left: var(--border-rail);
+      padding-left: var(--pl-rail);
     }
 
     .slide--theses .theses-list li {
-      font-size: clamp(12.5px, 1.22vw, 15.5px);
-      line-height: 1.38;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
     }
 
     .slide--theses .theses-list strong {
@@ -262,53 +402,42 @@
       color: var(--accent);
     }
 
-    @media (max-aspect-ratio: 5/4) {
-      .slide--theses .theses-cols {
-        grid-template-columns: 1fr;
-      }
+    /* Карточки в сетках — одинаковая типографика и «рейка» */
+    .ai-minus-item,
+    .pros-item,
+    .vibe-tz-item,
+    .core-item {
+      border-left: var(--border-rail);
+      padding-left: var(--pl-rail);
     }
 
-    .slide--ai-minus h1 {
-      margin-bottom: clamp(6px, 1vh, 12px);
-    }
-
-    .slide--ai-minus .ai-minus-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(14px, 2vh, 22px) clamp(18px, 2.5vw, 28px);
-      width: 100%;
-      max-width: 100%;
-      align-items: start;
-    }
-
-    .slide--ai-minus .ai-minus-item {
-      border-left: 2px solid var(--line);
-      padding-left: clamp(14px, 1.6vw, 20px);
-    }
-
-    .slide--ai-minus .ai-minus-item h2 {
-      font-size: clamp(13px, 1.2vw, 15px);
+    .ai-minus-item h2,
+    .pros-item h2,
+    .vibe-tz-item h2,
+    .core-item h2 {
+      font-size: var(--fs-card-title);
       font-weight: 600;
       letter-spacing: 0.02em;
-      line-height: 1.25;
-      margin-bottom: clamp(6px, 0.9vh, 10px);
+      line-height: var(--lh-title);
+      margin-bottom: clamp(4px, 0.55vh, 8px);
       color: var(--text);
     }
 
-    .slide--ai-minus .ai-minus-item p {
-      font-size: clamp(11.5px, 1.05vw, 13.5px);
-      line-height: 1.42;
+    .ai-minus-item p,
+    .pros-item p,
+    .vibe-tz-item p,
+    .core-item p {
+      font-size: var(--fs-card-desc);
+      line-height: 1.38;
       color: var(--muted);
     }
 
-    @media (max-aspect-ratio: 5/4) {
-      .slide--ai-minus .ai-minus-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .slide.slide--pros {
-      gap: clamp(12px, 1.6vh, 18px);
+    .ai-minus-item strong,
+    .pros-item strong,
+    .vibe-tz-item strong,
+    .core-item strong {
+      font-weight: 600;
+      color: var(--accent);
     }
 
     .slide--pros .pros-head {
@@ -316,7 +445,7 @@
       flex-direction: row;
       align-items: flex-end;
       justify-content: space-between;
-      gap: clamp(16px, 2.5vw, 32px);
+      gap: var(--gap-inline);
       width: 100%;
       max-width: 100%;
     }
@@ -325,6 +454,7 @@
       max-width: none;
       flex: 1;
       min-width: 0;
+      margin-bottom: 0;
     }
 
     .slide--pros .pros-icon {
@@ -339,160 +469,10 @@
       height: auto;
     }
 
-    .slide--pros .pros-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(12px, 1.6vh, 18px) clamp(16px, 2.2vw, 24px);
-      width: 100%;
-      max-width: 100%;
-      align-items: start;
-    }
-
-    .slide--pros .pros-item {
-      border-left: 2px solid var(--line);
-      padding-left: clamp(12px, 1.4vw, 18px);
-    }
-
-    .slide--pros .pros-item h2 {
-      font-size: clamp(12.5px, 1.12vw, 14.5px);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      line-height: 1.22;
-      margin-bottom: clamp(4px, 0.6vh, 8px);
-      color: var(--text);
-    }
-
-    .slide--pros .pros-item p {
-      font-size: clamp(11px, 0.98vw, 12.5px);
-      line-height: 1.38;
-      color: var(--muted);
-    }
-
     @media (max-aspect-ratio: 5/4) {
       .slide--pros .pros-icon {
         width: clamp(72px, 20vw, 110px);
       }
-
-      .slide--pros .pros-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .slide--vibe-tz h1 {
-      margin-bottom: clamp(2px, 0.5vh, 6px);
-    }
-
-    .slide--vibe-tz .kicker {
-      margin-bottom: clamp(8px, 1.2vh, 14px);
-      max-width: 100%;
-    }
-
-    .slide--vibe-tz .vibe-tz-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 1.1vh, 12px) clamp(14px, 2vw, 22px);
-      width: 100%;
-      max-width: 100%;
-      align-items: start;
-    }
-
-    .slide--vibe-tz .vibe-tz-item {
-      border-left: 2px solid var(--line);
-      padding-left: clamp(10px, 1.2vw, 16px);
-    }
-
-    .slide--vibe-tz .vibe-tz-item h2 {
-      font-size: clamp(11px, 1vw, 13px);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-      margin-bottom: clamp(2px, 0.4vh, 5px);
-      color: var(--text);
-    }
-
-    .slide--vibe-tz .vibe-tz-item p {
-      font-size: clamp(10px, 0.92vw, 12px);
-      line-height: 1.34;
-      color: var(--muted);
-    }
-
-    .slide--vibe-tz .vibe-tz-item strong {
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    @media (max-aspect-ratio: 5/4) {
-      .slide--vibe-tz .vibe-tz-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .slide--core h1 {
-      margin-bottom: clamp(6px, 1vh, 12px);
-    }
-
-    .slide--core .core-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(12px, 1.6vh, 18px) clamp(16px, 2.2vw, 24px);
-      width: 100%;
-      max-width: 100%;
-      align-items: start;
-    }
-
-    .slide--core .core-item {
-      border-left: 2px solid var(--line);
-      padding-left: clamp(12px, 1.4vw, 18px);
-    }
-
-    .slide--core .core-item h2 {
-      font-size: clamp(12px, 1.08vw, 14px);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      line-height: 1.22;
-      margin-bottom: clamp(4px, 0.6vh, 8px);
-      color: var(--text);
-    }
-
-    .slide--core .core-item p {
-      font-size: clamp(10.5px, 0.98vw, 12.5px);
-      line-height: 1.38;
-      color: var(--muted);
-    }
-
-    .slide--core .core-item strong {
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    @media (max-aspect-ratio: 5/4) {
-      .slide--core .core-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .slide--summary.slide--core h1 {
-      margin-bottom: clamp(4px, 0.7vh, 8px);
-    }
-
-    .slide--summary.slide--core .core-grid {
-      gap: clamp(8px, 1.2vh, 14px) clamp(14px, 2vw, 20px);
-    }
-
-    .slide--summary.slide--core .core-item h2 {
-      font-size: clamp(11px, 1vw, 13px);
-      line-height: 1.18;
-      margin-bottom: clamp(2px, 0.45vh, 6px);
-    }
-
-    .slide--summary.slide--core .core-item p {
-      font-size: clamp(10px, 0.9vw, 11.75px);
-      line-height: 1.33;
-    }
-
-    .slide--summary.slide--core .core-item:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      max-width: min(64ch, 100%);
     }
 
     .toolbar {
@@ -508,7 +488,7 @@
       border: none;
       color: var(--muted);
       padding: 8px 12px;
-      font-size: 14px;
+      font-size: var(--fs-body);
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 4px;
@@ -524,28 +504,24 @@
     }
 
     .counter {
-      font-size: 13px;
+      font-size: var(--fs-meta);
       color: var(--muted);
       min-width: 4.5em;
       text-align: center;
       font-variant-numeric: tabular-nums;
     }
 
-    .hint {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
   </style>
 </head>
 <body>
   <div class="stage" role="region" aria-label="Слайды презентации">
     <div class="slides" id="slides">
       <section class="slide slide--about active" data-slide="0" aria-hidden="false">
-        <span class="slide-meta">Слайд 1</span>
         <div class="about-layout">
-          <div class="about-photo">
-            <img src="assets/komarova.png" width="400" height="400" alt="Комарова Анастасия" />
+          <div class="about-photo-pane">
+            <div class="about-photo">
+              <img src="assets/komarova.png" width="400" height="400" alt="Комарова Анастасия" />
+            </div>
           </div>
           <div class="about-copy">
             <p class="about-tag">Обо мне</p>
@@ -560,7 +536,6 @@
       </section>
 
       <section class="slide slide--theses" data-slide="1" aria-hidden="true">
-        <span class="slide-meta">Слайд 2</span>
         <h1>Vibe Coding как подход к разработке</h1>
         <div class="theses-cols">
           <ul class="theses-list">
@@ -577,7 +552,6 @@
       </section>
 
       <section class="slide slide--pros" data-slide="2" aria-hidden="true">
-        <span class="slide-meta">Слайд 3</span>
         <div class="pros-head">
           <h1>Плюсы Vibe Coding</h1>
           <div class="pros-icon" aria-hidden="true">
@@ -598,14 +572,13 @@
             <p>В центре внимания остаются сценарии пользователей, бизнес-правила и поведение системы, а не реализация интерфейса или технические детали.</p>
           </div>
           <div class="pros-item">
-            <h2>ИИ ускоряет проектирование архитектуры и сборку компонентов</h2>
+            <h2>ИИ ускоряет проектирование архитектуры и сборку</h2>
             <p>Система автоматически предлагает структуру приложения и готовые элементы, сокращая время на проектирование и базовую реализацию.</p>
           </div>
         </div>
       </section>
 
       <section class="slide slide--ai-minus" data-slide="3" aria-hidden="true">
-        <span class="slide-meta">Слайд 4</span>
         <h1>Минусы ИИ-разработки</h1>
         <div class="ai-minus-grid">
           <div class="ai-minus-item">
@@ -627,37 +600,46 @@
         </div>
       </section>
 
-      <section class="slide slide--core" data-slide="4" aria-hidden="true">
-        <span class="slide-meta">Слайд 5</span>
+      <section class="slide slide--vibe-def" data-slide="4" aria-hidden="true">
+        <div class="vibe-def-layout">
+          <div class="vibe-def-text-col">
+            <h1>Что такое Vibe-ТЗ</h1>
+            <div class="vibe-def-copy">
+              <p class="kicker vibe-def-lead">Vibe-ТЗ — это текстовое описание продукта через сценарии, поведение и логику, а не интерфейсы и код.</p>
+              <p class="kicker vibe-def-note">Фактически — это «код на естественном языке» для сборки продукта через ИИ.</p>
+            </div>
+          </div>
+          <div class="vibe-def-icon-pane" aria-hidden="true">
+            <div class="vibe-def-icon">
+              <img src="assets/vibe-def-icon.png" width="154" height="154" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide slide--core" data-slide="5" aria-hidden="true">
         <h1>Ядро Vibe-ТЗ</h1>
         <div class="core-grid">
           <div class="core-item">
             <h2>Аудитория и контекст использования</h2>
-            <p>Определяет, <strong>для кого создаётся продукт</strong> и <strong>в каких условиях он используется</strong>: <strong>роли пользователей, их задачи, среду и частоту взаимодействия</strong>.</p>
+            <p>Определяет, для кого создаётся продукт и в каких условиях он используется: <strong>роли пользователей, их задачи, среду и частоту взаимодействия</strong>.</p>
           </div>
           <div class="core-item">
             <h2>Ключевой сквозной пользовательский сценарий</h2>
             <p>Описывает <strong>основной путь пользователя от входа до достижения цели</strong>, без разрывов и второстепенных деталей.</p>
           </div>
           <div class="core-item">
-            <h2>Роль системы — зачем продукт существует + типы пользователей</h2>
-            <p>Определяет <strong>назначение продукта и его ценность</strong>: какую <strong>задачу он решает</strong> и для <strong>каких ролей</strong> (новички, администраторы, бизнес-пользователи и т.д.), включая их <strong>цели и мотивацию</strong>.</p>
+            <h2>Роль системы — зачем продукт существует</h2>
+            <p>Определяет <strong>назначение и ценность</strong>: какую <strong>задачу решает продукт</strong> и <strong>зачем он нужен</strong>.</p>
           </div>
           <div class="core-item">
-            <h2>Пользовательские сценарии — ключевые цепочки действий</h2>
-            <p>Описывает <strong>основные пути взаимодействия пользователя с системой от входа до результата</strong>, фиксируя <strong>последовательность шагов без привязки к интерфейсу</strong>.</p>
+            <h2>Типы пользователей</h2>
+            <p>Описывает <strong>ключевые роли</strong> (новички, администраторы, бизнес-пользователи) и их <strong>цели, задачи и мотивацию</strong>.</p>
           </div>
         </div>
       </section>
 
-      <section class="slide slide--vibe-def" data-slide="5" aria-hidden="true">
-        <span class="slide-meta">Слайд 6</span>
-        <h1>Что такое Vibe-ТЗ</h1>
-        <p class="kicker vibe-def-lead">Качество Vibe Coding на ~80% определяется качеством ТЗ.</p>
-      </section>
-
       <section class="slide slide--vibe-tz" data-slide="6" aria-hidden="true">
-        <span class="slide-meta">Слайд 7</span>
         <h1>Принципы Vibe-ТЗ</h1>
         <div class="vibe-tz-grid">
           <div class="vibe-tz-item">
@@ -669,22 +651,17 @@
             <p>Определяют <strong>основные точки взаимодействия и их функцию</strong> в пользовательском пути: <strong>вход, работа, результат, управление</strong>.</p>
           </div>
           <div class="vibe-tz-item">
-            <h2>Поведение системы — логика реакций</h2>
-            <p>Задаёт, <strong>как система отвечает на действия пользователя или события</strong>: какие <strong>операции выполняет</strong>, какие <strong>данные меняет</strong>, какие <strong>результаты возвращает</strong>.</p>
-          </div>
-          <div class="vibe-tz-item">
-            <h2>Наличие интеграций — взаимодействия с другими системами</h2>
+            <h2>Взаимодействия с другими системами</h2>
             <p>Определяет <strong>внешнюю экосистему продукта</strong>: какие <strong>сервисы, API и платформы</strong> подключаются (платежи, авторизация, CRM, аналитика и т.д.), какие данные передаются и в каком формате. <strong>Фиксирует границы ответственности системы</strong> и <strong>зависимость от внешних компонентов</strong>.</p>
           </div>
           <div class="vibe-tz-item">
-            <h2>Референсы по опыту взаимодействия и визуальной среде</h2>
+            <h2>Референсы по взаимодействию и визуальной среде</h2>
             <p>Задают <strong>ориентиры по UX/UI</strong> и помогают сформировать <strong>ожидаемый уровень удобства и визуального стиля продукта</strong>.</p>
           </div>
         </div>
       </section>
 
       <section class="slide" data-slide="7" aria-hidden="true">
-        <span class="slide-meta">Слайд 8</span>
         <h1>Инструменты формирования Vibe-ТЗ</h1>
         <p class="kicker">Текст ТЗ можно собирать и уточнять с помощью ИИ: диалоговые модели, исследовательские ассистенты, специализированные чат-боты.</p>
         <ul>
@@ -694,12 +671,11 @@
       </section>
 
       <section class="slide" data-slide="8" aria-hidden="true">
-        <span class="slide-meta">Слайд 9</span>
         <h1>Платформы генерации</h1>
         <div class="cols">
           <div class="col">
             <h2>Конструкторы с ИИ</h2>
-            <p class="kicker" style="margin-bottom: 16px;">Например Lovable: мало кода, быстрый старт.</p>
+            <p class="kicker">Например Lovable: мало кода, быстрый старт.</p>
             <ul>
               <li>Плюсы: скорость, удобно для MVP, мало ручного кода</li>
               <li>Минусы: слабая кастомизация, ограниченная масштабируемость, зависимость от платформы</li>
@@ -707,7 +683,7 @@
           </div>
           <div class="col">
             <h2>Среда разработки + ИИ</h2>
-            <p class="kicker" style="margin-bottom: 16px;">Cursor, VS Code с ИИ-плагинами и аналоги.</p>
+            <p class="kicker">Cursor, VS Code с ИИ-плагинами и аналоги.</p>
             <ul>
               <li>Плюсы: полный контроль над кодом, гибкая архитектура, зрелые системы, масштабирование</li>
               <li>Минусы: выше порог входа, нужен инженерный опыт, медленнее старт</li>
@@ -717,7 +693,6 @@
       </section>
 
       <section class="slide slide--core slide--summary" data-slide="9" aria-hidden="true">
-        <span class="slide-meta">Слайд 10</span>
         <h1>Саммари</h1>
         <div class="core-grid">
           <div class="core-item">
@@ -730,7 +705,7 @@
           </div>
           <div class="core-item">
             <h2>Нужно явно учитывать нефункциональные требования</h2>
-            <p><strong>Производительность, масштабируемость, отказоустойчивость</strong> — всё это не появляется «само», это нужно <strong>закладывать в ТЗ</strong>. <strong>Безопасность тоже не по умолчанию</strong>: <strong>авторизация, защита данных, работа с API и доступами</strong> должны быть явно описаны — иначе система будет уязвимой.</p>
+            <p><strong>Производительность, масштабируемость, отказоустойчивость и безопасность</strong> — всё это не появляется «само», это нужно <strong>закладывать в ТЗ</strong>.</p>
           </div>
           <div class="core-item">
             <h2>ИИ не думает за продукт</h2>
@@ -739,7 +714,7 @@
         </div>
       </section>
     </div>
-    <footer class="stage-footer" id="stage-footer" aria-live="polite">Комарова Анастасия — Слайд 1 из 10</footer>
+    <footer class="stage-footer" id="stage-footer" aria-live="polite">Комарова Анастасия — 1 из 10</footer>
   </div>
 
   <div class="toolbar">
@@ -747,8 +722,6 @@
     <span class="counter" id="counter" aria-live="polite">1 / 10</span>
     <button type="button" id="next" aria-label="Следующий слайд">Вперёд</button>
   </div>
-  <p class="hint">Стрелки, пробел. Формат 16:9.</p>
-
   <script>
     (function () {
       var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
@@ -767,7 +740,7 @@
         var num = idx + 1;
         var total = slides.length;
         counter.textContent = num + " / " + total;
-        footer.textContent = author + " — Слайд " + num + " из " + total;
+        footer.textContent = author + " — " + num + " из " + total;
       }
 
       show(0);
