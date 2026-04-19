@@ -113,6 +113,30 @@
       pointer-events: auto;
     }
 
+    .slide--with-hero {
+      justify-content: flex-start;
+    }
+
+    .slide-hero-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      width: 100%;
+      margin-bottom: clamp(2px, 0.5vh, 10px);
+    }
+
+    .slide-hero-icon img {
+      display: block;
+      width: clamp(132px, 19vw, 220px);
+      max-width: 92%;
+      height: auto;
+    }
+
+    .slide--pros .slide-hero-icon img {
+      width: clamp(150px, 24vw, 280px);
+    }
+
     .slide-split {
       justify-content: flex-start;
       text-align: left;
@@ -440,38 +464,13 @@
       color: var(--accent);
     }
 
-    .slide--pros .pros-head {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: var(--gap-inline);
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .slide--pros .pros-head h1 {
+    .slide--pros h1 {
       max-width: none;
-      flex: 1;
-      min-width: 0;
-      margin-bottom: 0;
-    }
-
-    .slide--pros .pros-icon {
-      width: clamp(88px, 11vw, 140px);
-      flex-shrink: 0;
-      opacity: 0.92;
-    }
-
-    .slide--pros .pros-icon img {
-      display: block;
-      width: 100%;
-      height: auto;
     }
 
     @media (max-aspect-ratio: 5/4) {
-      .slide--pros .pros-icon {
-        width: clamp(72px, 20vw, 110px);
+      .slide--pros .slide-hero-icon img {
+        width: clamp(120px, 28vw, 220px);
       }
     }
 
@@ -535,7 +534,10 @@
         </div>
       </section>
 
-      <section class="slide slide--theses" data-slide="1" aria-hidden="true">
+      <section class="slide slide--theses slide--with-hero" data-slide="1" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-coding.png" width="154" height="154" alt="" />
+        </div>
         <h1>Vibe Coding как подход к разработке</h1>
         <div class="theses-cols">
           <ul class="theses-list">
@@ -551,13 +553,11 @@
         </div>
       </section>
 
-      <section class="slide slide--pros" data-slide="2" aria-hidden="true">
-        <div class="pros-head">
-          <h1>Плюсы Vibe Coding</h1>
-          <div class="pros-icon" aria-hidden="true">
-            <img src="assets/vibe-pros-icon.png" width="280" height="280" alt="" />
-          </div>
+      <section class="slide slide--pros slide--with-hero" data-slide="2" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/vibe-pros-icon.png" width="280" height="280" alt="" />
         </div>
+        <h1>Плюсы Vibe Coding</h1>
         <div class="pros-grid">
           <div class="pros-item">
             <h2>Быстрое прототипирование: идея → продукт</h2>
@@ -578,7 +578,10 @@
         </div>
       </section>
 
-      <section class="slide slide--ai-minus" data-slide="3" aria-hidden="true">
+      <section class="slide slide--ai-minus slide--with-hero" data-slide="3" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-rocket.png" width="154" height="154" alt="" />
+        </div>
         <h1>Минусы ИИ-разработки</h1>
         <div class="ai-minus-grid">
           <div class="ai-minus-item">
@@ -617,7 +620,10 @@
         </div>
       </section>
 
-      <section class="slide slide--core" data-slide="5" aria-hidden="true">
+      <section class="slide slide--core slide--with-hero" data-slide="5" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-nomad.png" width="154" height="154" alt="" />
+        </div>
         <h1>Ядро Vibe-ТЗ</h1>
         <div class="core-grid">
           <div class="core-item">
@@ -639,7 +645,10 @@
         </div>
       </section>
 
-      <section class="slide slide--vibe-tz" data-slide="6" aria-hidden="true">
+      <section class="slide slide--vibe-tz slide--with-hero" data-slide="6" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-trending.png" width="154" height="154" alt="" />
+        </div>
         <h1>Принципы Vibe-ТЗ</h1>
         <div class="vibe-tz-grid">
           <div class="vibe-tz-item">
@@ -679,7 +688,10 @@
         </div>
       </section>
 
-      <section class="slide" data-slide="8" aria-hidden="true">
+      <section class="slide slide--with-hero" data-slide="8" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-coding.png" width="154" height="154" alt="" />
+        </div>
         <h1>Платформы генерации</h1>
         <div class="cols">
           <div class="col">
@@ -701,7 +713,10 @@
         </div>
       </section>
 
-      <section class="slide slide--core slide--summary" data-slide="9" aria-hidden="true">
+      <section class="slide slide--core slide--summary slide--with-hero" data-slide="9" aria-hidden="true">
+        <div class="slide-hero-icon" aria-hidden="true">
+          <img src="assets/icon-rocket.png" width="154" height="154" alt="" />
+        </div>
         <h1>Саммари</h1>
         <div class="core-grid">
           <div class="core-item">
